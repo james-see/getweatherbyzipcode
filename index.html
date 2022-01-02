@@ -1,5 +1,12 @@
 <!DOCTYPE html>
   <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8"> 
     <title>Zipcode weather app</title>
     <style>
@@ -62,7 +69,7 @@
             })
             // response = '';
             var vm = this;
-            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=imperial")
+            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=british")
             .then(function (response) {
               vm.status = response.data;
             })
