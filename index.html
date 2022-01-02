@@ -69,7 +69,7 @@
             })
             // response = '';
             var vm = this;
-            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=british")
+            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=British")
             .then(function (response) {
               vm.status = response.data;
             })
