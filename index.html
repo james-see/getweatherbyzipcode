@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8"> 
+    <title>Zipcode weather app</title>
+    <style>
+      body {
+            font-family: monospace;
+          }
+      input {
+            font-size: 16px;
+            font-size: max(16px, 1em);
+            font-family: inherit;
+            padding: 0.25em 0.5em;
+            background-color: #e2e2e2;
+            border: 2px solid #a2a2a2;
+            border-radius: 4px;
+          }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  </head>
+  <body>
+    <div id="app">
+      <h3><input ref="domainget" id="domainget" type="text" value="22207" />
+      </h3>
+    <button type="button" v-on:click="loadQuote()">Submit</button>
+      <h2>Current weather info for zipcode: {{ }}</h2>
+      <p>{{ status }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          status: '',
+          zipcode: '',
+          datafun: null,
+          lat: 0.0,
+          lng: 0.0,
+          databack: [],
+        },
+        created: function () {
+          //this.loadQuote();
+        },
+        methods: {
+          setCors: function() {
+            if(this.domain == "") {
+              res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
+            }
+          },
+          loadQuote: function () {
+            this.zipcode = this.$refs.domainget.value;
+            this.status = 'loading...';
+            console.log(this.zipcode);
+            axios.get("https://api.zippopotam.us/us/"+this.zipcode)
+            .then(function (response) {
+              this.databack = response.data.places[0]
+              console.log(this.databack)
+              this.lat = this.databack.latitude
+              this.lng = this.databack.longitude
+              console.log(this.lat,this.lng)
+            })
+            // response = '';
+            var vm = this;
+            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=imperial")
+            .then(function (response) {
+              vm.status = response.data;
+            })
+            .catch(function (error) {
+              vm.status = 'An error occurred.' + error;
+            });
+        }
+      }
+        });
+    </script>
+  </body>
+</html>
