@@ -23,16 +23,41 @@
             border: 2px solid #a2a2a2;
             border-radius: 4px;
           }
+      #app {
+          font-family: monospace;
+          font-size: 16px;
+          margin: 0 auto;
+      }
+      .container {
+            padding: 20px;
+            width: auto;
+            height: 150px;
+            outline: dashed 1px black;
+          }
+      .header {
+            text-align: center;
+          }
+      .center-button {
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+            margin: 0 auto;
+            width: 120px;
+            height: 30px;
+            background-color: aquamarine;
+            border-radius: 15px;
+          }
     </style>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div id="app">
-      <h2>3 day forecast {{ zipcode }}</h2>
-      <h3><input ref="domainget" id="domainget" type="text" value="22207" />
-      </h3>
-    <button type="button" v-on:click="loadQuote()">Submit</button>
+      <div class="container">
+        <h2 class="header">3 day forecast {{ zipcode }}</h2>
+        <h3 class="header"><input ref="domainget" id="domainget" type="text" value="22207" /></h3>
+        <button class="center-button" type="button" v-on:click="loadQuote()">Submit</button>
+      </div>
       <div v-if="awesome">
         <p>Predicted 3 hour Temp: {{ currenttemp }}</p>
         <h3>Raw json return object:</h3>
