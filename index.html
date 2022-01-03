@@ -29,12 +29,12 @@
   </head>
   <body>
     <div id="app">
-      <h2>Current weather info for zipcode {{ zipcode }}</h2>
+      <h2>3 day forecast {{ zipcode }}</h2>
       <h3><input ref="domainget" id="domainget" type="text" value="22207" />
       </h3>
     <button type="button" v-on:click="loadQuote()">Submit</button>
       <div v-if="awesome">
-        <p>Current Temp: {{ currenttemp }}</p>
+        <p>Predicted 3 hour Temp: {{ currenttemp }}</p>
         <h3>Raw json return object:</h3>
         <p>{{ status }}</p>
       </div>
