@@ -9,7 +9,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8"> 
-    <title>Zipcode weather app</title>
+    <title>Zipcode Vue.JS SPA weather app by JAMES CAMPBELL</title>
     <style>
       body {
             font-family: monospace;
@@ -26,15 +26,18 @@
     </style>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   </head>
   <body>
     <div id="app">
+      <h2>Current weather info for zipcode {{ zipcode }}</h2>
       <h3><input ref="domainget" id="domainget" type="text" value="22207" />
       </h3>
     <button type="button" v-on:click="loadQuote()">Submit</button>
-      <h2>Current weather info for zipcode: {{ }}</h2>
-      <p>{{ status }}</p>
+      <div v-if="awesome">
+        <p>Current Temp: {{ currenttemp }}</p>
+        <h3>Raw json return object:</h3>
+        <p>{{ status }}</p>
+      </div>
     </div>
     <script>
       var vm = new Vue({
@@ -47,6 +50,8 @@
           lng: null,
           databack: [],
           url: null,
+          currenttemp: null,
+          awesome: false,
         },
         created: function () {
           //this.convertStringToNumber();
@@ -76,7 +81,9 @@
             console.log(this.url)
             axios.get(this.url)
             .then(function (response) {
+              vm.currenttemp = response.data.dataseries[0].temp2m;
               vm.status = response.data;
+              vm.awesome = true;
             })
           }
           )
