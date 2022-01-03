@@ -24,18 +24,21 @@
             border-radius: 4px;
           }
       #app {
-          font-family: monospace;
+          font-family: sans-serif;
           font-size: 16px;
           margin: 0 auto;
+          letter-spacing: 0.09em;
       }
       .container {
-            padding: 20px;
+            padding: 30px;
             width: auto;
-            height: 150px;
-            outline: dashed 1px black;
+            height: 180px;
+            /*outline: dashed 1px black;*/
+            background-color: lightcyan;
           }
       .header {
             text-align: center;
+            margin: 25px 0 10px 0;
           }
       .center-button {
         font-size: 1.2rem;
@@ -43,9 +46,22 @@
         justify-content: center;
             margin: 0 auto;
             width: 120px;
-            height: 30px;
+            height: 35px;
+            padding-top: 3px;
             background-color: aquamarine;
             border-radius: 15px;
+            vertical-align: text-bottom;
+            line-height: 1.2;
+          }
+      .gold {
+            background-color: gold;
+          }
+      .results {
+            font-family: monospace;
+          }
+      .center {
+            display: flex;
+            justify-content: center;
           }
     </style>
     <script src="https://unpkg.com/vue"></script>
@@ -54,12 +70,16 @@
   <body>
     <div id="app">
       <div class="container">
-        <h2 class="header">3 day forecast {{ zipcode }}</h2>
+        <h2 class="header">3-DAY FORECAST {{ zipcode }}</h2>
         <h3 class="header"><input ref="domainget" id="domainget" type="text" value="22207" /></h3>
-        <button class="center-button" type="button" v-on:click="loadQuote()">Submit</button>
+        <br />
+        <button class="center-button" type="button" v-on:click="loadQuote()">{{ loading }}</button>
+        <br />
+        <!--<div class="header">{{ loading }}</div> -->
       </div>
-      <div v-if="awesome">
-        <p>Predicted 3 hour Temp: {{ currenttemp }}</p>
+      
+      <div v-if="awesome" class="results">
+        <p class="center">Predicted 3-Hour Temp: {{ currenttemp }}</p>
         <h3>Raw json return object:</h3>
         <p>{{ status }}</p>
       </div>
@@ -77,19 +97,15 @@
           url: null,
           currenttemp: null,
           awesome: false,
+          loading: "Submit",
         },
         created: function () {
           //this.convertStringToNumber();
         },
         methods: {
-          setCors: function() {
-            if(this.domain == "") {
-              res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
-            }
-          },
           loadQuote: function () {
             this.zipcode = this.$refs.domainget.value;
-            this.status = 'loading...';
+            this.loading = 'loading...';
             var vm = this;
             console.log(this.zipcode);
             // you have to keep everything in the same fucking then wrapper so its nested get then 
@@ -108,6 +124,7 @@
             .then(function (response) {
               vm.currenttemp = response.data.dataseries[0].temp2m;
               vm.status = response.data;
+              vm.loading = "Submit";
               vm.awesome = true;
             })
           }
