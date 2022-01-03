@@ -43,11 +43,12 @@
           zipcode: '',
           datafun: null,
           lat: 0.0,
-          lng: 0.0,
+          lng: null,
           databack: [],
+          url: null,
         },
         created: function () {
-          //this.loadQuote();
+          //this.convertStringToNumber();
         },
         methods: {
           setCors: function() {
@@ -58,27 +59,29 @@
           loadQuote: function () {
             this.zipcode = this.$refs.domainget.value;
             this.status = 'loading...';
+            var vm = this;
             console.log(this.zipcode);
+            // you have to keep everything in the same fucking then wrapper so its nested get then 
             axios.get("https://api.zippopotam.us/us/"+this.zipcode)
             .then(function (response) {
               this.databack = response.data.places[0]
               console.log(this.databack)
               this.lat = this.databack.latitude
               this.lng = this.databack.longitude
+              this.lng = Number(this.lng)
               console.log(this.lat,this.lng)
-            })
-            // response = '';
-            var vm = this;
-            axios.get("https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=British")
+              this.url = "https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=british&&tzshift=0"
+            
+            console.log(this.url)
+            axios.get(this.url)
             .then(function (response) {
               vm.status = response.data;
             })
-            .catch(function (error) {
-              vm.status = 'An error occurred.' + error;
-            });
+          }
+          )
         }
       }
-        });
+      });
     </script>
   </body>
 </html>
