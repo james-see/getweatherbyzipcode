@@ -87,6 +87,18 @@
         text-align: justify;
         text-justify: inter-word;
       }
+      ul li:nth-child(odd) {
+        background: snow;
+      }
+      ul li:nth-child(8n) {
+        background: gold;
+      }
+      li {
+        line-height: 1.2em;
+        margin: 0 auto;
+        max-width: 300px;
+        line-height: 24px;
+      }
     </style>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -98,7 +110,6 @@
         <h3 class="header"><input ref="domainget" id="domainget" type="text" value="22207" /></h3>
         <br />
         <button class="center-button" type="button" v-on:click="loadQuote()">{{ loading }}</button>
-        <br />
         <!--<div class="header">{{ loading }}</div> -->
       </div>
       
