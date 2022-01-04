@@ -34,7 +34,7 @@
       }
       .container {
         margin: 0;
-            padding: 10px 0 30px 0;
+            padding: 0 0 25px 0;
             width: auto;
             height: 180;
             /*outline: dashed 1px black;*/
@@ -62,12 +62,12 @@
             height: 35px;
             padding-top: 4px;
             padding-bottom: 4px;
-            background-color: aquamarine;
+            background-color: #69ffb4;
             border-radius: 15px;
             vertical-align: text-bottom;
             line-height: 1.2;
             letter-spacing: 0.07em;
-            border: 2px solid darkcyan;
+            border: 2px solid #49b27d;
             color: black;
           }
       .gold {
@@ -91,13 +91,23 @@
         background: snow;
       }
       ul li:nth-child(8n) {
-        background: gold;
+        background: hotpink;
+        color: snow;
       }
       li {
-        line-height: 1.2em;
-        margin: 0 auto;
+        margin: 0;
         max-width: 300px;
-        line-height: 24px;
+        line-height: 20px;
+        padding: 0 5px;
+      }
+      ul {
+        margin: 0 auto;
+        background-color: antiquewhite;
+        padding:10px;
+        z-index: 1;
+        /*border: 2px solid #49b27d;*/
+        width: fit-content;
+        align-content: center;
       }
     </style>
     <script src="https://unpkg.com/vue"></script>
@@ -115,32 +125,32 @@
       
       <div v-if="awesome" class="results">
         <div class="container">
-        <ul class="container">
-          <li class="justify">03-Hour Temp: {{ threehr }} Prec: {{ threep }}</li>
-          <li class="justify">06-Hour Temp: {{ sixhr }} Prec: {{ sixp }}</li>
-          <li class="justify">09-Hour Temp: {{ ninehr }} Prec: {{ ninep }}</li>
-          <li class="justify">12-Hour Temp: {{ twelvehr }} Prec: {{ twelvep }}</li>
-          <li class="justify">15-Hour Temp: {{ fifteenhr }} Prec: {{ fifteenp }}</li>
-          <li class="justify">18-Hour Temp: {{ eighteenhr }} Prec: {{ eighteenp }}</li>
-          <li class="justify">21-Hour Temp: {{ twentyonehr }} Prec: {{ twentyonep }}</li>
-          <li class="justify">24-Hour Temp: {{ twentyfourhr }} Prec: {{ twentyfourp }}</li>
-          <li class="justify">27-Hour Temp: {{ twentysevenhr }} Prec: {{ twentysevenp }}</li>
-          <li class="justify">30-Hour Temp: {{ thirtyhr }} Prec: {{ thirtyp }}</li>
-          <li class="justify">33-Hour Temp: {{ thirtythreehr }} Prec: {{ thirtythreep }}</li>
-          <li class="justify">36-Hour Temp: {{ thirtysixhr }} Prec: {{ thirtysixp }}</li>
-          <li class="justify">39-Hour Temp: {{ thirtyninehr }} Prec: {{ thirtyninep }}</li>
-          <li class="justify">42-Hour Temp: {{ fortytwohr }} Prec: {{ fortytwop }}</li>
-          <li class="justify">45-Hour Temp: {{ fortyfivehr }} Prec: {{ fortyfivep }}</li>
-          <li class="justify">48-Hour Temp: {{ fortyeighthr }} Prec: {{ fortyeightp }}</li>
-          <li class="justify">51-Hour Temp: {{ fiftyonehr }} Prec: {{ fiftyonep }}</li>
-          <li class="justify">54-Hour Temp: {{ fiftyfourhr }} Prec: {{ fiftyfourp }}</li>
-          <li class="justify">57-Hour Temp: {{ fiftysevenhr }} Prec: {{ fiftysevenp }}</li>
-          <li class="justify">60-Hour Temp: {{ sixtyhr }} Prec: {{ sixtyp }}</li>
-          <li class="justify">63-Hour Temp: {{ sixtythreehr }} Prec: {{ sixtythreep }}</li>
-          <li class="justify">66-Hour Temp: {{ sixtysixhr }} Prec: {{ sixtysixp }}</li>
-          <li class="justify">69-Hour Temp: {{ sixtyninehr }} Prec: {{ sixtyninep }}</li>
-          <li class="justify">72-Hour Temp: {{ seventytwohr }} Prec: {{ seventytwop }}</li>
-        </ul>
+          <ul>
+            <li class="justify">03-Hour Temp: {{ threehr }} Prec: {{ threep }}</li>
+            <li class="justify">06-Hour Temp: {{ sixhr }} Prec: {{ sixp }}</li>
+            <li class="justify">09-Hour Temp: {{ ninehr }} Prec: {{ ninep }}</li>
+            <li class="justify">12-Hour Temp: {{ twelvehr }} Prec: {{ twelvep }}</li>
+            <li class="justify">15-Hour Temp: {{ fifteenhr }} Prec: {{ fifteenp }}</li>
+            <li class="justify">18-Hour Temp: {{ eighteenhr }} Prec: {{ eighteenp }}</li>
+            <li class="justify">21-Hour Temp: {{ twentyonehr }} Prec: {{ twentyonep }}</li>
+            <li class="justify">24-Hour Temp: {{ twentyfourhr }} Prec: {{ twentyfourp }}</li>
+            <li class="justify">27-Hour Temp: {{ twentysevenhr }} Prec: {{ twentysevenp }}</li>
+            <li class="justify">30-Hour Temp: {{ thirtyhr }} Prec: {{ thirtyp }}</li>
+            <li class="justify">33-Hour Temp: {{ thirtythreehr }} Prec: {{ thirtythreep }}</li>
+            <li class="justify">36-Hour Temp: {{ thirtysixhr }} Prec: {{ thirtysixp }}</li>
+            <li class="justify">39-Hour Temp: {{ thirtyninehr }} Prec: {{ thirtyninep }}</li>
+            <li class="justify">42-Hour Temp: {{ fortytwohr }} Prec: {{ fortytwop }}</li>
+            <li class="justify">45-Hour Temp: {{ fortyfivehr }} Prec: {{ fortyfivep }}</li>
+            <li class="justify">48-Hour Temp: {{ fortyeighthr }} Prec: {{ fortyeightp }}</li>
+            <li class="justify">51-Hour Temp: {{ fiftyonehr }} Prec: {{ fiftyonep }}</li>
+            <li class="justify">54-Hour Temp: {{ fiftyfourhr }} Prec: {{ fiftyfourp }}</li>
+            <li class="justify">57-Hour Temp: {{ fiftysevenhr }} Prec: {{ fiftysevenp }}</li>
+            <li class="justify">60-Hour Temp: {{ sixtyhr }} Prec: {{ sixtyp }}</li>
+            <li class="justify">63-Hour Temp: {{ sixtythreehr }} Prec: {{ sixtythreep }}</li>
+            <li class="justify">66-Hour Temp: {{ sixtysixhr }} Prec: {{ sixtysixp }}</li>
+            <li class="justify">69-Hour Temp: {{ sixtyninehr }} Prec: {{ sixtyninep }}</li>
+            <li class="justify">72-Hour Temp: {{ seventytwohr }} Prec: {{ seventytwop }}</li>
+          </ul>
       </div>
         <br />
         <h3>Raw json return object:</h3>
