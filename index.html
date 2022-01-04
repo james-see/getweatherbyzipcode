@@ -13,6 +13,7 @@
     <style>
       body {
             font-family: monospace;
+            background-color: lightcyan;
           }
       input {
             font-size: 16px;
@@ -35,7 +36,15 @@
         margin: 0;
             padding: 10px 0 30px 0;
             width: auto;
-            height: 180px;
+            height: 180;
+            /*outline: dashed 1px black;*/
+            background-color: lightcyan;
+          }
+      .result-container {
+        margin: 0;
+            padding: 10px 0 30px 0;
+            width: auto;
+            height: 320px;
             /*outline: dashed 1px black;*/
             background-color: lightcyan;
           }
@@ -65,6 +74,7 @@
             background-color: gold;
           }
       .results {
+        margin: 0 auto;
             font-family: monospace;
           }
       .center {
@@ -93,6 +103,7 @@
       </div>
       
       <div v-if="awesome" class="results">
+        <div class="container">
         <ul class="container">
           <li class="justify">03-Hour Temp: {{ threehr }} Prec: {{ threep }}</li>
           <li class="justify">06-Hour Temp: {{ sixhr }} Prec: {{ sixp }}</li>
@@ -102,9 +113,27 @@
           <li class="justify">18-Hour Temp: {{ eighteenhr }} Prec: {{ eighteenp }}</li>
           <li class="justify">21-Hour Temp: {{ twentyonehr }} Prec: {{ twentyonep }}</li>
           <li class="justify">24-Hour Temp: {{ twentyfourhr }} Prec: {{ twentyfourp }}</li>
+          <li class="justify">27-Hour Temp: {{ twentysevenhr }} Prec: {{ twentysevenp }}</li>
+          <li class="justify">30-Hour Temp: {{ thirtyhr }} Prec: {{ thirtyp }}</li>
+          <li class="justify">33-Hour Temp: {{ thirtythreehr }} Prec: {{ thirtythreep }}</li>
+          <li class="justify">36-Hour Temp: {{ thirtysixhr }} Prec: {{ thirtysixp }}</li>
+          <li class="justify">39-Hour Temp: {{ thirtyninehr }} Prec: {{ thirtyninep }}</li>
+          <li class="justify">42-Hour Temp: {{ fortytwohr }} Prec: {{ fortytwop }}</li>
+          <li class="justify">45-Hour Temp: {{ fortyfivehr }} Prec: {{ fortyfivep }}</li>
+          <li class="justify">48-Hour Temp: {{ fortyeighthr }} Prec: {{ fortyeightp }}</li>
+          <li class="justify">51-Hour Temp: {{ fiftyonehr }} Prec: {{ fiftyonep }}</li>
+          <li class="justify">54-Hour Temp: {{ fiftyfourhr }} Prec: {{ fiftyfourp }}</li>
+          <li class="justify">57-Hour Temp: {{ fiftysevenhr }} Prec: {{ fiftysevenp }}</li>
+          <li class="justify">60-Hour Temp: {{ sixtyhr }} Prec: {{ sixtyp }}</li>
+          <li class="justify">63-Hour Temp: {{ sixtythreehr }} Prec: {{ sixtythreep }}</li>
+          <li class="justify">66-Hour Temp: {{ sixtysixhr }} Prec: {{ sixtysixp }}</li>
+          <li class="justify">69-Hour Temp: {{ sixtyninehr }} Prec: {{ sixtyninep }}</li>
+          <li class="justify">72-Hour Temp: {{ seventytwohr }} Prec: {{ seventytwop }}</li>
         </ul>
+      </div>
+        <br />
         <h3>Raw json return object:</h3>
-        <p>{{ status }}</p>
+        <pre>{{ JSON.stringify(status, null, 2) }}</pre>
       </div>
     </div>
     <script>
@@ -129,6 +158,22 @@
           eighteenhr: null,
           twentyonehr: null,
           twentyfourhr: null,
+          twentysevenhr: null,
+          thirtyhr: null,
+          thirtythreehr: null,
+          thirtysixhr: null,
+          thirtyninehr: null,
+          fortytwohr: null,
+          fortyfivehr: null,
+          fortyeighthr: null,
+          fiftyonehr: null,
+          fiftyfourhr: null,
+          fiftysevenhr: null,
+          sixtyhr: null,
+          sixtythreehr: null,
+          sixtysixhr: null,
+          sixtyninehr: null,
+          seventytwohr: null,
           threep: null,
           sixp: null,
           ninep: null,
@@ -137,9 +182,30 @@
           eighteenp: null,
           twentyonep: null,
           twentyfourp: null,
+          twentysevenp: null,
+          thirtyp: null,
+          thirtythreep: null,
+          thirtysixp: null,
+          thirtyninep: null,
+          fortytwop: null,
+          fortyfivep: null,
+          fortyeightp: null,
+          fiftyonep: null,
+          fiftyfourp: null,
+          fiftysevenp: null,
+          sixtyp: null,
+          sixtythreep: null,
+          sixtysixp: null,
+          sixtyninep: null,
+          seventytwop: null,
         },
         created: function () {
           //this.convertStringToNumber();
+        },
+        filters: {
+          pretty: function(value) {
+            return console.dir(value, {depth: null, colors: true});
+          }
         },
         methods: {
           loadQuote: function () {
@@ -169,6 +235,22 @@
               vm.eighteenhr = response.data.dataseries[5].temp2m;
               vm.twentyonehr = response.data.dataseries[6].temp2m;
               vm.twentyfourhr = response.data.dataseries[7].temp2m;
+              vm.twentysevenhr = response.data.dataseries[0].temp2m;
+              vm.thirtyhr = response.data.dataseries[1].temp2m;
+              vm.thirtythreehr = response.data.dataseries[2].temp2m;
+              vm.thirtysixhr = response.data.dataseries[3].temp2m;
+              vm.thirtyninehr = response.data.dataseries[4].temp2m;
+              vm.fortytwohr = response.data.dataseries[5].temp2m;
+              vm.fortyfivehr = response.data.dataseries[6].temp2m;
+              vm.fortyeighthr = response.data.dataseries[7].temp2m;
+              vm.fiftyonehr = response.data.dataseries[0].temp2m;
+              vm.fiftyfourhr = response.data.dataseries[1].temp2m;
+              vm.fiftysevenhr = response.data.dataseries[2].temp2m;
+              vm.sixtyhr = response.data.dataseries[3].temp2m;
+              vm.sixtythreehr = response.data.dataseries[4].temp2m;
+              vm.sixtysixhr = response.data.dataseries[5].temp2m;
+              vm.sixtyninehr = response.data.dataseries[6].temp2m;
+              vm.seventytwohr = response.data.dataseries[7].temp2m;
               vm.threep = response.data.dataseries[0].prec_type;
               vm.sixp = response.data.dataseries[1].prec_type;
               vm.ninep = response.data.dataseries[2].prec_type;
@@ -177,7 +259,23 @@
               vm.eighteenp = response.data.dataseries[5].prec_type;
               vm.twentyonep = response.data.dataseries[6].prec_type;
               vm.twentyfourp = response.data.dataseries[7].prec_type;
-              vm.status = response.data;
+              vm.twentysevenp = response.data.dataseries[8].prec_type;
+              vm.thirtyp = response.data.dataseries[9].prec_type;
+              vm.thirtythreep = response.data.dataseries[10].prec_type;
+              vm.thirtysixp = response.data.dataseries[11].prec_type;
+              vm.thirtyninep = response.data.dataseries[12].prec_type;
+              vm.fortytwop = response.data.dataseries[13].prec_type;
+              vm.fortyfivep = response.data.dataseries[14].prec_type;
+              vm.fortyeightp = response.data.dataseries[15].prec_type;
+              vm.fiftyonep = response.data.dataseries[16].prec_type;
+              vm.fiftyfourp = response.data.dataseries[17].prec_type;
+              vm.fiftysevenp = response.data.dataseries[18].prec_type;
+              vm.sixtyp = response.data.dataseries[19].prec_type;
+              vm.sixtythreep = response.data.dataseries[20].prec_type;
+              vm.sixtysixp = response.data.dataseries[21].prec_type;
+              vm.sixtyninep = response.data.dataseries[22].prec_type;
+              vm.seventytwop = response.data.dataseries[23].prec_type;
+              vm.status = response.data.dataseries[0];
               vm.loading = "Submit";
               vm.awesome = true;
             })
