@@ -32,6 +32,7 @@
           letter-spacing: 0.09em;
       }
       .container {
+        margin: 0;
             padding: 10px 0 30px 0;
             width: auto;
             height: 180px;
@@ -70,6 +71,12 @@
             display: flex;
             justify-content: center;
           }
+      .justify {
+        display: flex;
+        justify-content: center;
+        text-align: justify;
+        text-justify: inter-word;
+      }
     </style>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -86,7 +93,16 @@
       </div>
       
       <div v-if="awesome" class="results">
-        <p class="center">Predicted 3-Hour Temp: {{ currenttemp }}</p>
+        <ul class="container">
+          <li class="justify">Predicted 3-Hour Temp: {{ threehr }}</li>
+          <li class="justify">Predicted 6-Hour Temp: {{ sixhr }}</li>
+          <li class="justify">Predicted 9-Hour Temp: {{ ninehr }}</li>
+          <li class="justify">Predicted 12-Hour Temp: {{ twelvehr }}</li>
+          <li class="justify">Predicted 15-Hour Temp: {{ fifteenhr }}</li>
+          <li class="justify">Predicted 18-Hour Temp: {{ eighteenhr }}</li>
+          <li class="justify">Predicted 21-Hour Temp: {{ twentyonehr }}</li>
+          <li class="justify">Predicted 24-Hour Temp: {{ twentyfourhr }}</li>
+        </ul>
         <h3>Raw json return object:</h3>
         <p>{{ status }}</p>
       </div>
@@ -105,6 +121,14 @@
           currenttemp: null,
           awesome: false,
           loading: "Submit",
+          threehr: null,
+          sixhr: null,
+          ninehr: null,
+          twelvehr: null,
+          fifteenhr: null,
+          eighteenhr: null,
+          twentyonehr: null,
+          twentyfourhr: null,
         },
         created: function () {
           //this.convertStringToNumber();
@@ -129,7 +153,14 @@
             console.log(this.url)
             axios.get(this.url)
             .then(function (response) {
-              vm.currenttemp = response.data.dataseries[0].temp2m;
+              vm.threehr = response.data.dataseries[0].temp2m;
+              vm.sixhr = response.data.dataseries[1].temp2m;
+              vm.ninehr = response.data.dataseries[2].temp2m;
+              vm.twelvehr = response.data.dataseries[3].temp2m;
+              vm.fifteenhr = response.data.dataseries[4].temp2m;
+              vm.eighteenhr = response.data.dataseries[5].temp2m;
+              vm.twentyonehr = response.data.dataseries[6].temp2m;
+              vm.twentyfourhr = response.data.dataseries[7].temp2m;
               vm.status = response.data;
               vm.loading = "Submit";
               vm.awesome = true;
