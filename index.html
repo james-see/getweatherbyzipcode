@@ -94,14 +94,14 @@
       
       <div v-if="awesome" class="results">
         <ul class="container">
-          <li class="justify">Predicted 3-Hour Temp: {{ threehr }}</li>
-          <li class="justify">Predicted 6-Hour Temp: {{ sixhr }}</li>
-          <li class="justify">Predicted 9-Hour Temp: {{ ninehr }}</li>
-          <li class="justify">Predicted 12-Hour Temp: {{ twelvehr }}</li>
-          <li class="justify">Predicted 15-Hour Temp: {{ fifteenhr }}</li>
-          <li class="justify">Predicted 18-Hour Temp: {{ eighteenhr }}</li>
-          <li class="justify">Predicted 21-Hour Temp: {{ twentyonehr }}</li>
-          <li class="justify">Predicted 24-Hour Temp: {{ twentyfourhr }}</li>
+          <li class="justify">03-Hour Temp: {{ threehr }} Prec: {{ threep }}</li>
+          <li class="justify">06-Hour Temp: {{ sixhr }} Prec: {{ sixp }}</li>
+          <li class="justify">09-Hour Temp: {{ ninehr }} Prec: {{ ninep }}</li>
+          <li class="justify">12-Hour Temp: {{ twelvehr }} Prec: {{ twelvep }}</li>
+          <li class="justify">15-Hour Temp: {{ fifteenhr }} Prec: {{ fifteenp }}</li>
+          <li class="justify">18-Hour Temp: {{ eighteenhr }} Prec: {{ eighteenp }}</li>
+          <li class="justify">21-Hour Temp: {{ twentyonehr }} Prec: {{ twentyonep }}</li>
+          <li class="justify">24-Hour Temp: {{ twentyfourhr }} Prec: {{ twentyfourp }}</li>
         </ul>
         <h3>Raw json return object:</h3>
         <p>{{ status }}</p>
@@ -129,6 +129,14 @@
           eighteenhr: null,
           twentyonehr: null,
           twentyfourhr: null,
+          threep: null,
+          sixp: null,
+          ninep: null,
+          twelvep: null,
+          fifteenp: null,
+          eighteenp: null,
+          twentyonep: null,
+          twentyfourp: null,
         },
         created: function () {
           //this.convertStringToNumber();
@@ -161,6 +169,14 @@
               vm.eighteenhr = response.data.dataseries[5].temp2m;
               vm.twentyonehr = response.data.dataseries[6].temp2m;
               vm.twentyfourhr = response.data.dataseries[7].temp2m;
+              vm.threep = response.data.dataseries[0].prec_type;
+              vm.sixp = response.data.dataseries[1].prec_type;
+              vm.ninep = response.data.dataseries[2].prec_type;
+              vm.twelvep = response.data.dataseries[3].prec_type;
+              vm.fifteenp = response.data.dataseries[4].prec_type;
+              vm.eighteenp = response.data.dataseries[5].prec_type;
+              vm.twentyonep = response.data.dataseries[6].prec_type;
+              vm.twentyfourp = response.data.dataseries[7].prec_type;
               vm.status = response.data;
               vm.loading = "Submit";
               vm.awesome = true;
