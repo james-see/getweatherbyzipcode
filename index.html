@@ -161,160 +161,159 @@
             <li class="justify">69-Hour Temp: {{ sixtyninehr }} Prec: {{ sixtyninep }}</li>
             <li class="justify">72-Hour Temp: {{ seventytwohr }} Prec: {{ seventytwop }}</li>
           </ul>
+        </div>
       </div>
-        <br />
-        <h3>Raw json return object:</h3>
-        <pre>{{ JSON.stringify(status, null, 2) }}</pre>
-      </div>
+      
     </div>
-    <script>
-      var vm = new Vue({
-        el: '#app',
-        data: {
-          status: '',
-          zipcode: '',
-          datafun: null,
-          lat: 0.0,
-          lng: null,
-          databack: [],
-          url: null,
-          currenttemp: null,
-          awesome: false,
-          loading: "Submit",
-          threehr: null,
-          sixhr: null,
-          ninehr: null,
-          twelvehr: null,
-          fifteenhr: null,
-          eighteenhr: null,
-          twentyonehr: null,
-          twentyfourhr: null,
-          twentysevenhr: null,
-          thirtyhr: null,
-          thirtythreehr: null,
-          thirtysixhr: null,
-          thirtyninehr: null,
-          fortytwohr: null,
-          fortyfivehr: null,
-          fortyeighthr: null,
-          fiftyonehr: null,
-          fiftyfourhr: null,
-          fiftysevenhr: null,
-          sixtyhr: null,
-          sixtythreehr: null,
-          sixtysixhr: null,
-          sixtyninehr: null,
-          seventytwohr: null,
-          threep: null,
-          sixp: null,
-          ninep: null,
-          twelvep: null,
-          fifteenp: null,
-          eighteenp: null,
-          twentyonep: null,
-          twentyfourp: null,
-          twentysevenp: null,
-          thirtyp: null,
-          thirtythreep: null,
-          thirtysixp: null,
-          thirtyninep: null,
-          fortytwop: null,
-          fortyfivep: null,
-          fortyeightp: null,
-          fiftyonep: null,
-          fiftyfourp: null,
-          fiftysevenp: null,
-          sixtyp: null,
-          sixtythreep: null,
-          sixtysixp: null,
-          sixtyninep: null,
-          seventytwop: null,
-        },
-        created: function () {
-          //this.convertStringToNumber();
-        },
-        filters: {
-          pretty: function(value) {
-            return console.dir(value, {depth: null, colors: true});
-          }
-        },
-        methods: {
-          loadQuote: function () {
-            this.zipcode = this.$refs.domainget.value;
-            this.loading = 'loading...';
-            var vm = this;
-            console.log(this.zipcode);
-            // you have to keep everything in the same fucking then wrapper so its nested get then 
-            axios.get("https://api.zippopotam.us/us/"+this.zipcode)
-            .then(function (response) {
-              this.databack = response.data.places[0]
-              console.log(this.databack)
-              this.lat = this.databack.latitude
-              this.lng = this.databack.longitude
-              this.lng = Number(this.lng)
-              console.log(this.lat,this.lng)
-              this.url = "https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=british&&tzshift=0"
-            
-            console.log(this.url)
-            axios.get(this.url)
-            .then(function (response) {
-              vm.threehr = response.data.dataseries[0].temp2m;
-              vm.sixhr = response.data.dataseries[1].temp2m;
-              vm.ninehr = response.data.dataseries[2].temp2m;
-              vm.twelvehr = response.data.dataseries[3].temp2m;
-              vm.fifteenhr = response.data.dataseries[4].temp2m;
-              vm.eighteenhr = response.data.dataseries[5].temp2m;
-              vm.twentyonehr = response.data.dataseries[6].temp2m;
-              vm.twentyfourhr = response.data.dataseries[7].temp2m;
-              vm.twentysevenhr = response.data.dataseries[8].temp2m;
-              vm.thirtyhr = response.data.dataseries[9].temp2m;
-              vm.thirtythreehr = response.data.dataseries[10].temp2m;
-              vm.thirtysixhr = response.data.dataseries[11].temp2m;
-              vm.thirtyninehr = response.data.dataseries[12].temp2m;
-              vm.fortytwohr = response.data.dataseries[13].temp2m;
-              vm.fortyfivehr = response.data.dataseries[14].temp2m;
-              vm.fortyeighthr = response.data.dataseries[15].temp2m;
-              vm.fiftyonehr = response.data.dataseries[16].temp2m;
-              vm.fiftyfourhr = response.data.dataseries[17].temp2m;
-              vm.fiftysevenhr = response.data.dataseries[18].temp2m;
-              vm.sixtyhr = response.data.dataseries[19].temp2m;
-              vm.sixtythreehr = response.data.dataseries[20].temp2m;
-              vm.sixtysixhr = response.data.dataseries[21].temp2m;
-              vm.sixtyninehr = response.data.dataseries[22].temp2m;
-              vm.seventytwohr = response.data.dataseries[23].temp2m;
-              vm.threep = response.data.dataseries[0].prec_type;
-              vm.sixp = response.data.dataseries[1].prec_type;
-              vm.ninep = response.data.dataseries[2].prec_type;
-              vm.twelvep = response.data.dataseries[3].prec_type;
-              vm.fifteenp = response.data.dataseries[4].prec_type;
-              vm.eighteenp = response.data.dataseries[5].prec_type;
-              vm.twentyonep = response.data.dataseries[6].prec_type;
-              vm.twentyfourp = response.data.dataseries[7].prec_type;
-              vm.twentysevenp = response.data.dataseries[8].prec_type;
-              vm.thirtyp = response.data.dataseries[9].prec_type;
-              vm.thirtythreep = response.data.dataseries[10].prec_type;
-              vm.thirtysixp = response.data.dataseries[11].prec_type;
-              vm.thirtyninep = response.data.dataseries[12].prec_type;
-              vm.fortytwop = response.data.dataseries[13].prec_type;
-              vm.fortyfivep = response.data.dataseries[14].prec_type;
-              vm.fortyeightp = response.data.dataseries[15].prec_type;
-              vm.fiftyonep = response.data.dataseries[16].prec_type;
-              vm.fiftyfourp = response.data.dataseries[17].prec_type;
-              vm.fiftysevenp = response.data.dataseries[18].prec_type;
-              vm.sixtyp = response.data.dataseries[19].prec_type;
-              vm.sixtythreep = response.data.dataseries[20].prec_type;
-              vm.sixtysixp = response.data.dataseries[21].prec_type;
-              vm.sixtyninep = response.data.dataseries[22].prec_type;
-              vm.seventytwop = response.data.dataseries[23].prec_type;
-              vm.status = response.data.dataseries[0];
-              vm.loading = "Submit";
-              vm.awesome = true;
-            })
-          }
-          )
-        }
-      }
-      });
-    </script>
   </body>
 </html>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      status: '',
+      zipcode: '',
+      datafun: null,
+      lat: 0.0,
+      lng: null,
+      databack: [],
+      url: null,
+      currenttemp: null,
+      awesome: false,
+      loading: "Submit",
+      threehr: null,
+      sixhr: null,
+      ninehr: null,
+      twelvehr: null,
+      fifteenhr: null,
+      eighteenhr: null,
+      twentyonehr: null,
+      twentyfourhr: null,
+      twentysevenhr: null,
+      thirtyhr: null,
+      thirtythreehr: null,
+      thirtysixhr: null,
+      thirtyninehr: null,
+      fortytwohr: null,
+      fortyfivehr: null,
+      fortyeighthr: null,
+      fiftyonehr: null,
+      fiftyfourhr: null,
+      fiftysevenhr: null,
+      sixtyhr: null,
+      sixtythreehr: null,
+      sixtysixhr: null,
+      sixtyninehr: null,
+      seventytwohr: null,
+      threep: null,
+      sixp: null,
+      ninep: null,
+      twelvep: null,
+      fifteenp: null,
+      eighteenp: null,
+      twentyonep: null,
+      twentyfourp: null,
+      twentysevenp: null,
+      thirtyp: null,
+      thirtythreep: null,
+      thirtysixp: null,
+      thirtyninep: null,
+      fortytwop: null,
+      fortyfivep: null,
+      fortyeightp: null,
+      fiftyonep: null,
+      fiftyfourp: null,
+      fiftysevenp: null,
+      sixtyp: null,
+      sixtythreep: null,
+      sixtysixp: null,
+      sixtyninep: null,
+      seventytwop: null,
+    },
+    created: function () {
+      //this.convertStringToNumber();
+    },
+    filters: {
+      pretty: function(value) {
+        return console.dir(value, {depth: null, colors: true});
+      }
+    },
+    methods: {
+      loadQuote: function () {
+        this.zipcode = this.$refs.domainget.value;
+        this.loading = 'loading...';
+        var vm = this;
+        console.log(this.zipcode);
+        // you have to keep everything in the same fucking then wrapper so its nested get then 
+        axios.get("https://api.zippopotam.us/us/"+this.zipcode)
+        .then(function (response) {
+          this.databack = response.data.places[0]
+          console.log(this.databack)
+          this.lat = this.databack.latitude
+          this.lng = this.databack.longitude
+          this.lng = Number(this.lng)
+          console.log(this.lat,this.lng)
+          this.url = "https://www.7timer.info/bin/astro.php?lon="+this.lng+"&lat="+this.lat+"&ac=0&output=json&tzshift=0&unit=british&&tzshift=0"
+        
+        console.log(this.url)
+        axios.get(this.url)
+        .then(function (response) {
+          vm.threehr = response.data.dataseries[0].temp2m;
+          vm.sixhr = response.data.dataseries[1].temp2m;
+          vm.ninehr = response.data.dataseries[2].temp2m;
+          vm.twelvehr = response.data.dataseries[3].temp2m;
+          vm.fifteenhr = response.data.dataseries[4].temp2m;
+          vm.eighteenhr = response.data.dataseries[5].temp2m;
+          vm.twentyonehr = response.data.dataseries[6].temp2m;
+          vm.twentyfourhr = response.data.dataseries[7].temp2m;
+          vm.twentysevenhr = response.data.dataseries[8].temp2m;
+          vm.thirtyhr = response.data.dataseries[9].temp2m;
+          vm.thirtythreehr = response.data.dataseries[10].temp2m;
+          vm.thirtysixhr = response.data.dataseries[11].temp2m;
+          vm.thirtyninehr = response.data.dataseries[12].temp2m;
+          vm.fortytwohr = response.data.dataseries[13].temp2m;
+          vm.fortyfivehr = response.data.dataseries[14].temp2m;
+          vm.fortyeighthr = response.data.dataseries[15].temp2m;
+          vm.fiftyonehr = response.data.dataseries[16].temp2m;
+          vm.fiftyfourhr = response.data.dataseries[17].temp2m;
+          vm.fiftysevenhr = response.data.dataseries[18].temp2m;
+          vm.sixtyhr = response.data.dataseries[19].temp2m;
+          vm.sixtythreehr = response.data.dataseries[20].temp2m;
+          vm.sixtysixhr = response.data.dataseries[21].temp2m;
+          vm.sixtyninehr = response.data.dataseries[22].temp2m;
+          vm.seventytwohr = response.data.dataseries[23].temp2m;
+          vm.threep = response.data.dataseries[0].prec_type;
+          vm.sixp = response.data.dataseries[1].prec_type;
+          vm.ninep = response.data.dataseries[2].prec_type;
+          vm.twelvep = response.data.dataseries[3].prec_type;
+          vm.fifteenp = response.data.dataseries[4].prec_type;
+          vm.eighteenp = response.data.dataseries[5].prec_type;
+          vm.twentyonep = response.data.dataseries[6].prec_type;
+          vm.twentyfourp = response.data.dataseries[7].prec_type;
+          vm.twentysevenp = response.data.dataseries[8].prec_type;
+          vm.thirtyp = response.data.dataseries[9].prec_type;
+          vm.thirtythreep = response.data.dataseries[10].prec_type;
+          vm.thirtysixp = response.data.dataseries[11].prec_type;
+          vm.thirtyninep = response.data.dataseries[12].prec_type;
+          vm.fortytwop = response.data.dataseries[13].prec_type;
+          vm.fortyfivep = response.data.dataseries[14].prec_type;
+          vm.fortyeightp = response.data.dataseries[15].prec_type;
+          vm.fiftyonep = response.data.dataseries[16].prec_type;
+          vm.fiftyfourp = response.data.dataseries[17].prec_type;
+          vm.fiftysevenp = response.data.dataseries[18].prec_type;
+          vm.sixtyp = response.data.dataseries[19].prec_type;
+          vm.sixtythreep = response.data.dataseries[20].prec_type;
+          vm.sixtysixp = response.data.dataseries[21].prec_type;
+          vm.sixtyninep = response.data.dataseries[22].prec_type;
+          vm.seventytwop = response.data.dataseries[23].prec_type;
+          vm.status = response.data.dataseries[0];
+          console.log(vm.status);
+          vm.loading = "Submit";
+          vm.awesome = true;
+        })
+      }
+      )
+    }
+  }
+  });
+</script>
